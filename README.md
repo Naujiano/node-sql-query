@@ -21,7 +21,11 @@ const nsq = require ( 'node-sql-query' )()
     "requestTimeout": 600000
 }
 
-nsq.request ( "SELECT getdate() FROM sys.tables", connConfig, function ( recorset ) { console.log(recorset) } )
+nsq.request ( 
+  "SELECT getdate() FROM sys.tables"
+  , connConfig
+  , function ( recorset ) { console.log(recorset) }
+)
 
 nsq.dbq ({
       "columns": [
@@ -48,6 +52,8 @@ nsq.dbq ({
 
 Executes a SQL command.
 
+Be careful when implementing this method in your public Node.js because any SQL sentence can be excuted through this totally exposing your DB.
+
 #### Parameters
 
 * **sqlSyntax**
@@ -71,9 +77,9 @@ Executes a SQL command.
 
 ### .dbq(**query**,**cb**)
 
-Executes a parametrized SELECT or Stored Procedure.
+Executes a parametrized SELECT statement.
 
-For this to work you must have a JSON file named `services.json`.
+Given that this method only executes SELECT statements, you can stay reassured that clients will only be able to read data from the DB and not modify it as with the previous method.
 
 #### Parameters
 
