@@ -64,6 +64,7 @@ For this to work you must have a JSON file named `services.json`.
   - `pageSize`: (*string*)
   - `offset`: (*string*)
 
+
   The resultant SQL query will be composed like this:
 
   `SET LANGUAGE [language] SELECT [columns] FROM [schemaSyntax] WHERE [whereSyntax] ORDER BY [orderbyColumns]`
