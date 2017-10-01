@@ -2,6 +2,8 @@
 
 This repository contains a Node.js interface that can query and paginate results from Microsoft SQL Server databases.
 
+It internally handles the **connection establishment** to the database and the **connection pools** so that many queries can be executed simultaneously.
+
 # Installation
 
 ```
