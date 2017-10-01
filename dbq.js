@@ -64,9 +64,8 @@ module.exports = function () {
 			return
 		}
 	}
-	this.ping = function ( dbID, cb ) {
+	this.ping = function ( dbConnConfig, cb ) {
 		const sqlSyntax = "SELECT '1'"
-		, dbConnConfig = services.databases[dbID]
 		if ( typeof dbConnConfig == "undefined" ) {
 			cb ( `'dbId' ${dbID} not valid.` )
 			return
