@@ -1,5 +1,5 @@
 require ( './dbQuery.js' )()
-const services = require ('./services.json')
+//const services = require ('./services.json')
 
 module.exports = function () {
 	this.request = request
@@ -16,15 +16,17 @@ module.exports = function () {
 			  , orderbyColumns
 			  , offset
 			  , pageSize
-			  , dbID
+			  , dbConnConfig
 			  , language
 			  , sp_name
 			} = params
+			/*
 			, dbConnConfig = services.databases[dbID]
 			if ( typeof dbConnConfig == "undefined" ) {
 				cb ( `'dbId' ${dbID} not valid.` )
 				return
 			}
+			*/
 			if ( !operation || operation == "select" ) {
 				let sqlSyntax = ` SELECT `
 				if ( orderbyColumns ) sqlSyntax += `ROW_NUMBER() OVER(ORDER BY ${orderbyColumns}) AS _ROW_NUMBER,`

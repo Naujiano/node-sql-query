@@ -55,16 +55,20 @@ For this to work you must have a JSON file named `services.json`.
 
   An object with the following keys:
 
-  - `operation`: (*string*) Can take the following values: `select` for SELECT statements or `sp` for stored procedures.
-  - `columns`: (*array*) An Array with the names of the columns.
-  - `schemaSyntax`: (*string*)
+  - `columns`: (*array*)(Required) An Array with the names of the columns.
+  - `schemaSyntax`: (*string*)(Required)
   - `whereSyntax`: (*string*)
   - `orderbyColumns`: (*array*)
-  - `language`: (*string*)
-  - `dbID`: (*string*)(Required) The 
+  - `language`: (*string*) Refer to SQL Server `SET LANGUAGE` command for the available options.
+  - `dbConnConfig`: (*object*)(Required) An object with the connection parameters. Refer to [`node-mssql` general configuration](https://github.com/patriksimek/node-mssql#general-same-for-all-drivers)
   - `pageSize`: (*string*)
   - `offset`: (*string*)
-  - `sp_name`: (*string*)
+
+  The resultant SQL query will be composed like this:
+
+  `SET LANGUAGE [language] SELECT [columns] FROM [schemaSyntax] WHERE [whereSyntax] ORDER BY [orderbyColumns]`
+
+  The `pageSize` (number of records per page) and `offset` (number of records to skip) parameters allows for paging the results.
 
 * **cb**
 
