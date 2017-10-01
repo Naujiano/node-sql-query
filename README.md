@@ -11,7 +11,35 @@ npm install node-sql-query
 # Usage
 
 ```
-import {dbq,request} from 'node-sql-query'
+const nsq = require ( 'node-sql-query' )()
+, connConfig = {
+    "user": "sa",
+    "password": "Sqlserver0",
+    "server": "localhost\\SQLEXPRESS",
+    "database": "vsegbas",
+    "port": 55857,
+    "requestTimeout": 600000
+}
+
+nsq.request ( "SELECT getdate() FROM sys.tables", connConfig, function ( recorset ) { console.log(recorset) } )
+
+nsq.dbq ({
+      "columns": [
+        "clientes.cli_id",
+        "cli_apellido1",
+        "cli_apellido2"
+      ],
+      "schemaSyntax": "polizas inner join clientes on polizas.cli_id=clientes.cli_id",
+      "dbConnConfig": connConfig,
+      "orderbyColumns": [
+        "clientes.cli_id"
+      ],
+      "offset": 4,
+      "pageSize": 4,
+      "language": "spanish"
+}, function ( recorset ) { 
+    console.log(recorset) 
+})
 ```
 
 # Methods
