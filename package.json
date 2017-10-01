@@ -1,0 +1,27 @@
+{
+  "name": "node-sql-query",
+  "version": "0.1.0",
+  "description": "Node.js query interface for Microsoft SQL Server databases.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Naujiano/simple-table.git"
+  },
+  "keywords": [
+    "node",
+    "mssql",
+    "database",
+    "query",
+    "interface",
+    "microsoft"
+  ],
+  "author": "Juan Martín Migliorini <juan.martin.m@gmailcom>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Naujiano/node-sql-query/issues"
+  },
+  "homepage": "https://github.com/Naujiano/node-sql-query",
+  "dependencies": {
+    "mssql": "^4.1.0"
+  }
+}
