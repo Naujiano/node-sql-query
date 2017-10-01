@@ -1,4 +1,4 @@
-# A Node.js query interface for Microsoft SQL Server databases
+# A Node.js query interface for Microsoft SQL Server
 
 This repository contains a Node.js interface that can query and paginate results from Microsoft SQL Server databases.
 
@@ -11,31 +11,14 @@ npm install node-sql-query
 # Usage
 
 ```
-import {dbq,ping,request} from 'node-sql-query'
+import {dbq,request} from 'node-sql-query'
 ```
 
 # Methods
 
-### .dbq(**query**,**cb**)
-
-Adds/resets the query and parses it
-
-#### Parameters
-
-* **query**
-
-  (*object*) (Required)
-
-* **cb**
-
-  (*function*) (Required)
-
-  Callback function that will be called at the end of the request. The recorset (object) or the error will be passed as parameter.
-
-
 ### .request(**sqlSyntax**,**connConfig**,**cb**)
 
-Adds/resets the query and parses it
+Executes a SQL command.
 
 #### Parameters
 
@@ -56,4 +39,26 @@ Adds/resets the query and parses it
   (*function*) (Required)
 
   Callback function that will be called at the end of the request. The recorset (object) or the error will be passed as parameter.
+
+
+### .dbq(**query**,**cb**)
+
+Executes a parametrized SELECT or Stored Procedure.
+
+#### Parameters
+
+* **query**
+
+  (*object*) (Required)
+
+  An object with the following keys:
+
+  - `operation`: (*string*) Can take the following values: `select` for SELECT statements or `sp` for stored procedures.
+
+* **cb**
+
+  (*function*) (Required)
+
+  Callback function that will be called at the end of the request. The recorset (object) or the error will be passed as parameter.
+
 
