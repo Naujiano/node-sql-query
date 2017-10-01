@@ -2,6 +2,7 @@ require ( './dbQuery.js' )()
 const services = require ('./services.json')
 
 module.exports = function () {
+	this.request = request
 	this.dbq = function (
 		params
 		, cb

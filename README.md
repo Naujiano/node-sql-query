@@ -45,6 +45,8 @@ Executes a SQL command.
 
 Executes a parametrized SELECT or Stored Procedure.
 
+For this to work you must have a JSON file named `services.json`.
+
 #### Parameters
 
 * **query**
@@ -54,6 +56,15 @@ Executes a parametrized SELECT or Stored Procedure.
   An object with the following keys:
 
   - `operation`: (*string*) Can take the following values: `select` for SELECT statements or `sp` for stored procedures.
+  - `columns`: (*array*) An Array with the names of the columns.
+  - `schemaSyntax`: (*string*)
+  - `whereSyntax`: (*string*)
+  - `orderbyColumns`: (*array*)
+  - `language`: (*string*)
+  - `dbID`: (*string*)(Required) The 
+  - `pageSize`: (*string*)
+  - `offset`: (*string*)
+  - `sp_name`: (*string*)
 
 * **cb**
 
