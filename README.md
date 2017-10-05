@@ -109,7 +109,7 @@ Executes a parametrized SELECT or INSERT or UPDATE or DELETE or Stored Procedure
   - `sp_name`: (*string*) The name of the Stored Procedure followed by the parameters.
 
 
-  The resultant SQL query will be composed like this:
+  ####The resultant SQL queries will be composed like this:
 
   **SELECT**
 
@@ -123,7 +123,7 @@ Executes a parametrized SELECT or INSERT or UPDATE or DELETE or Stored Procedure
 
   **UPDATE**
 
-  `SET LANGUAGE [language] INSERT INTO [schemaSyntax] ( [columns] ) VALUES ( [values] )`
+  `SET LANGUAGE [language] UPDATE [schemaSyntax] SET ( [columns[0]] = [values[0]], [columns[1]] = [values[1]], ... ) WHERE [whereSyntax]`
 
   **DELETE**
 
