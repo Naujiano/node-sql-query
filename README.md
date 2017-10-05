@@ -12,7 +12,7 @@ npm install node-sql-query
 
 # Usage
 
-```
+```js
 const nsq = require ( 'node-sql-query' )()
 , connConfig = {
     "user": "sa",
