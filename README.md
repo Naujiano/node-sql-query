@@ -54,8 +54,6 @@ nsq.dbq ({
 
 Executes a SQL command.
 
-Be careful when implementing this method in your public Node.js because any SQL sentence can be excuted through this totally exposing your DB.
-
 #### Parameters
 
 * **sqlSyntax**
@@ -79,9 +77,7 @@ Be careful when implementing this method in your public Node.js because any SQL 
 
 ### .dbq(**query**,**cb**)
 
-Executes a parametrized SELECT statement.
-
-Given that this method only executes SELECT statements, you can stay reassured that clients will only be able to read data from the DB and not modify it as with the previous method.
+Executes a parametrized SELECT or INSERT or UPDATE or DELETE or Stored Procedure statement.
 
 #### Parameters
 
@@ -91,21 +87,52 @@ Given that this method only executes SELECT statements, you can stay reassured t
 
   An object with the following keys:
 
+  - `operation`: (*string*) Posible values are: `select`, `insert`, `update`, `delete`, `sp`.
+  - `language`: (*string*) Refer to SQL Server `SET LANGUAGE` command for the available options.
+  - `dbConnConfig`: (*object*)(Required) An object with the connection parameters. Refer to [`node-mssql` general configuration](https://github.com/patriksimek/node-mssql#general-same-for-all-drivers)
   - `columns`: (*array*)(Required) An Array with the names of the columns.
   - `schemaSyntax`: (*string*)(Required)
   - `whereSyntax`: (*string*)
+
+  Only available for `select` operation:
+
   - `orderbyColumns`: (*array*)
-  - `language`: (*string*) Refer to SQL Server `SET LANGUAGE` command for the available options.
-  - `dbConnConfig`: (*object*)(Required) An object with the connection parameters. Refer to [`node-mssql` general configuration](https://github.com/patriksimek/node-mssql#general-same-for-all-drivers)
   - `pageSize`: (*string*)
   - `offset`: (*string*)
+
+  Only available for `insert` or `update` operations:
+
+  - `values`: (*array*) Must have the same length as `columns`. Values that will be assigned to each column.
+  
+  Only available for `sp` operation:
+
+  - `sp_name`: (*string*) The name of the Stored Procedure followed by the parameters.
 
 
   The resultant SQL query will be composed like this:
 
+  **SELECT**
+
   `SET LANGUAGE [language] SELECT [columns] FROM [schemaSyntax] WHERE [whereSyntax] ORDER BY [orderbyColumns]`
 
   The `pageSize` (number of records per page) and `offset` (number of records to skip) parameters allows for paging the results.
+
+  **INSERT**
+
+  `SET LANGUAGE [language] INSERT INTO [schemaSyntax] ( [columns] ) VALUES ( [values] )`
+
+  **UPDATE**
+
+  `SET LANGUAGE [language] INSERT INTO [schemaSyntax] ( [columns] ) VALUES ( [values] )`
+
+  **DELETE**
+
+  `SET LANGUAGE [language] DELETE [schemaSyntax] WHERE [whereSyntax]`
+
+  **SP**
+
+  `SET LANGUAGE [language] EXEC [sp_name]`
+
 
 * **cb**
 

@@ -14,6 +14,7 @@ module.exports = function () {
 			  , schemaSyntax
 			  , whereSyntax
 			  , orderbyColumns
+			  , values
 			  , offset
 			  , pageSize
 			  , dbConnConfig
@@ -55,6 +56,27 @@ module.exports = function () {
 			} else if ( operation == "sp" ) {
 				let sqlSyntax = `${language?"SET LANGUAGE "+language:""} EXEC ${sp_name}`
 				request ( sqlSyntax ,dbConnConfig,  cb )
+			} else if ( operation == "insert" ) {
+				const vals = values.map ( val => `'${val.replace(/\'/gi,"''")}'` )
+				let sqlSyntax = `${language?"SET LANGUAGE "+language:""} INSERT INTO ${schemaSyntax} (${columns}) VALUES (${vals})`
+				request ( sqlSyntax ,dbConnConfig, (recordset) => {
+					//cb (recordset)
+					cb (recordset)
+				})
+			} else if ( operation == "update" ) {
+				const vals = values.map ( val => `'${val.replace(/\'/gi,"''")}'` )
+				, assigns = columns.map ( (column,i) => `${column} = ${vals[i]}` )
+				let sqlSyntax = `${language?"SET LANGUAGE "+language:""} UPDATE ${schemaSyntax} SET ${assigns} WHERE ${whereSyntax}`
+				request ( sqlSyntax ,dbConnConfig, (recordset) => {
+					//cb (recordset)
+					cb (recordset)
+				})
+			} else if ( operation == "delete" ) {
+				let sqlSyntax = `${language?"SET LANGUAGE "+language:""} DELETE ${schemaSyntax} WHERE ${whereSyntax}`
+				request ( sqlSyntax ,dbConnConfig, (recordset) => {
+					//cb (recordset)
+					cb (recordset)
+				})
 			} else {
 				cb ( "'operation' not valid.")
 				return
