@@ -109,7 +109,7 @@ Executes a parametrized SELECT or INSERT or UPDATE or DELETE or Stored Procedure
   - `sp_name`: (*string*) The name of the Stored Procedure followed by the parameters.
 
 
-  ####The resultant SQL queries will be composed like this:
+  #### The resultant SQL queries will be composed like this:
 
   **SELECT**
 
