@@ -94,22 +94,25 @@ Executes a parametrized SELECT or INSERT or UPDATE or DELETE or Stored Procedure
   - `schemaSyntax`: (*string*)(Required)
   - `whereSyntax`: (*string*)
 
+
   Only available for `select` operation:
 
   - `orderbyColumns`: (*array*)
   - `pageSize`: (*string*)
   - `offset`: (*string*)
 
+
   Only available for `insert` or `update` operations:
 
   - `values`: (*array*) Must have the same length as `columns`. Values that will be assigned to each column.
   
+
   Only available for `sp` operation:
 
   - `sp_name`: (*string*) The name of the Stored Procedure followed by the parameters.
 
 
-  #### The resultant SQL queries will be composed like this:
+  ####The resultant SQL queries will be composed like this:
 
   **SELECT**
 
