@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Naujiano/node-sql-query",
   "dependencies": {
-    "exceljs": "^0.6.2",
+    "exceljs": "^3.8.0",
     "mssql": "^4.1.0"
   }
 }
